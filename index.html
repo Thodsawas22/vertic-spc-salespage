@@ -2322,8 +2322,8 @@
                     <div class="form-group">
                         <label>📦 เลือกแพ็คเกจ <span class="required">*</span></label>
                         <div class="package-options">
-                            <label class="package-card" id="pkg1Card" onclick="selectPackage(1)">
-                                <input type="radio" name="package" value="1" id="pkg1">
+                            <label class="package-card selected" id="pkg1Card" onclick="selectPackage(1)">
+                                <input type="radio" name="package" value="1" id="pkg1" checked>
                                 <div class="package-radio"></div>
                                 <div class="package-info">
                                     <div class="pkg-name">📦 1 ชิ้น</div>
@@ -2336,8 +2336,8 @@
                                 <span class="package-badge">ลด 38%</span>
                             </label>
 
-                            <label class="package-card selected" id="pkg2Card" onclick="selectPackage(2)">
-                                <input type="radio" name="package" value="2" id="pkg2" checked>
+                            <label class="package-card" id="pkg2Card" onclick="selectPackage(2)">
+                                <input type="radio" name="package" value="2" id="pkg2">
                                 <div class="package-radio"></div>
                                 <div class="package-info">
                                     <div class="pkg-name">📦📦 2 ชิ้น (คู่สุดคุ้ม)</div>
@@ -2388,16 +2388,16 @@
                     <!-- Order Summary -->
                     <div class="order-summary" id="orderSummary">
                         <div class="order-summary-row">
-                            <span class="label" id="summaryPkg">📦📦 VERTIC x2 (แพ็คคู่)</span>
-                            <span id="summaryItemPrice">฿1,790</span>
+                            <span class="label" id="summaryPkg">📦 VERTIC x1</span>
+                            <span id="summaryItemPrice">฿990</span>
                         </div>
                         <div class="order-summary-row">
                             <span class="label">🚚 ค่าจัดส่ง</span>
-                            <span id="summaryShipping"><span class="free-badge">ฟรี!</span></span>
+                            <span id="summaryShipping">฿0</span>
                         </div>
                         <div class="order-summary-row total">
                             <span>ยอดรวมทั้งหมด</span>
-                            <span class="amount" id="summaryTotal">฿1,790</span>
+                            <span class="amount" id="summaryTotal">฿990</span>
                         </div>
                     </div>
 
@@ -2971,7 +2971,7 @@
             submitBtn.disabled = false;
             submitBtnText.innerHTML = 'ยืนยันสั่งซื้อ — เก็บเงินปลายทาง';
             form.reset();
-            selectPackage(2);
+            selectPackage(1);
 
             // Track conversion (if FB pixel or GA is present)
             if (typeof fbq !== 'undefined') {
