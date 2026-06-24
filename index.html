@@ -2845,25 +2845,26 @@
         });
 
         function sendToWebhook(data) {
-            // Try fetch first, fall back to image beacon
             if (WEBHOOK_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_ID')) {
                 // Placeholder URL — skip webhook, just show success
                 setTimeout(function() { showSuccess(data); }, 800);
                 return;
             }
 
+            const formData = new URLSearchParams();
+            formData.append('customerName', data.name);
+            formData.append('customerPhone', data.phone);
+            formData.append('customerAddress', data.address);
+            formData.append('package', data.packageName);
+            formData.append('totalPrice', data.price);
+
             fetch(WEBHOOK_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: formData
             })
             .then(function() { showSuccess(data); })
             .catch(function() {
-                // Fallback: send via URL params
-                var params = new URLSearchParams(data).toString();
-                var img = new Image();
-                img.src = WEBHOOK_URL + '?' + params;
                 showSuccess(data);
             });
         }
