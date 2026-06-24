@@ -765,20 +765,22 @@
         }
         
         .product-frame {
-            width: 130px;
-            height: auto;
+            width: 140px;
+            height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: float 4s ease-in-out infinite;
-            filter: drop-shadow(0 15px 25px rgba(0, 180, 216, 0.2));
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 10%, rgba(255,255,255,0) 65%);
+            border-radius: 50%;
         }
         
         .product-visual-img {
-            max-height: 120px;
+            max-height: 130px;
             width: auto;
             object-fit: contain;
-            border-radius: 12px;
+            mix-blend-mode: multiply;
+            filter: contrast(1.1) drop-shadow(0 0 10px rgba(0, 180, 216, 0.4));
         }
         
         /* VS Badge */
@@ -1971,17 +1973,21 @@
                         <div class="col-price text-danger">฿200,000 - ฿800,000</div>
                         <div class="col-visual">
                             <div class="spine-glow-visual">
-                                <svg class="spine-svg" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: pulse-danger 2s infinite;">
-                                    <path d="M50 10 C 65 30, 65 60, 45 90 C 35 110, 45 130, 50 140" stroke="rgba(255,77,77,0.2)" stroke-width="16" stroke-linecap="round"/>
-                                    <circle cx="51" cy="20" r="5" fill="#ff4d4d"/>
-                                    <circle cx="56" cy="35" r="5" fill="#ff4d4d"/>
-                                    <circle cx="58" cy="50" r="5" fill="#ff4d4d"/>
-                                    <circle cx="56" cy="65" r="5" fill="#ff4d4d"/>
-                                    <circle cx="52" cy="80" r="5" fill="#ff4d4d"/>
-                                    <circle cx="47" cy="95" r="5" fill="#ff4d4d"/>
-                                    <circle cx="45" cy="110" r="5" fill="#ff4d4d"/>
-                                    <circle cx="48" cy="125" r="5" fill="#ff4d4d"/>
-                                    <path d="M51 20 C 60 35, 63 60, 47 95 C 43 110, 45 120, 48 125" stroke="#ff4d4d" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <svg class="spine-svg" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: pulse-danger 2s infinite; overflow: visible;">
+                                    <path d="M40 10 C 55 5, 65 15, 55 30 C 52 35, 50 40, 52 45 C 65 55, 75 80, 65 110 C 60 125, 65 145, 55 145 C 45 145, 45 125, 52 110 C 55 100, 40 90, 45 70 C 50 55, 45 45, 45 35 C 40 25, 30 15, 40 10 Z" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="rgba(255,255,255,0.03)" stroke-dasharray="3 3"/>
+                                    <path d="M52 32 C 60 45, 68 75, 58 105 C 55 115, 58 130, 60 135" stroke="rgba(255,77,77,0.3)" stroke-width="10" stroke-linecap="round"/>
+                                    <circle cx="53" cy="35" r="3" fill="#ff4d4d"/>
+                                    <circle cx="56" cy="45" r="3" fill="#ff4d4d"/>
+                                    <circle cx="59" cy="55" r="3" fill="#ff4d4d"/>
+                                    <circle cx="61" cy="65" r="3" fill="#ff4d4d"/>
+                                    <circle cx="62" cy="75" r="3" fill="#ff4d4d"/>
+                                    <circle cx="61" cy="85" r="3" fill="#ff4d4d"/>
+                                    <circle cx="59" cy="95" r="3" fill="#ff4d4d"/>
+                                    <circle cx="57" cy="105" r="3" fill="#ff4d4d"/>
+                                    <circle cx="56" cy="115" r="3" fill="#ff4d4d"/>
+                                    <circle cx="58" cy="125" r="3" fill="#ff4d4d"/>
+                                    <circle cx="60" cy="135" r="3" fill="#ff4d4d"/>
+                                    <path d="M53 35 C 65 55, 65 85, 57 105 C 55 115, 58 125, 60 135" stroke="#ff4d4d" stroke-width="2" fill="none" stroke-linecap="round"/>
                                 </svg>
                                 <div class="warning-flashes">
                                     <svg class="warn-icon icon-1" viewBox="0 0 24 24" fill="none" stroke="#ff4d4d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
