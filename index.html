@@ -154,6 +154,13 @@
         .text-danger { color: var(--danger); }
         .text-success { color: var(--success); }
         .text-center { text-align: center; }
+        .text-gradient-bright {
+            background: linear-gradient(135deg, #00f5ff, #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.6));
+        }
         .text-gradient {
             background: var(--gradient-accent);
             -webkit-background-clip: text;
@@ -1842,16 +1849,16 @@
             <img src="images/vertic_logo.png" alt="VERTIC" class="hero-logo-main">
             <div class="hero-badge">
                 <span>⚡</span>
-                <span>สินค้าขายดีอันดับ 1 — จำนวนจำกัด</span>
+                <span>สินค้าอันดับ 1 ของ VERTIC - มีจำนวนจำกัด</span>
             </div>
             <h1>
                 หยุดปวดหลัง ปวดคอ<br>
-                ด้วย<span class="text-gradient"> เครื่องฝึกสรีระอัจฉริยะ</span><br>
-                ตัวแรกของเมืองไทย
+                ด้วย<span class="text-gradient-bright"> เครื่องฝึกสรีระอัจฉริยะ</span><br>
+                นวัตกรรมดูแลสุขภาพสรีระ
             </h1>
             <p class="hero-subtitle">
                 เซ็นเซอร์อัจฉริยะตรวจจับทุกครั้งที่คุณห่อตัว สั่นเตือนภายใน 1 วินาที<br>
-                ฝึกสรีระถูกต้องได้ใน 21 วัน — โดยไม่ต้องพึ่งหมอ
+                ฝึกสรีระถูกต้องได้ใน 21 วัน — เสริมสร้างบุคลิกภาพด้วยตัวคุณเอง
             </p>
             <div class="hero-price">
                 <span class="price-old">฿1,590</span>
@@ -1966,20 +1973,22 @@
                         <div class="col-price text-danger">฿200,000 - ฿800,000</div>
                         <div class="col-visual">
                             <div class="spine-glow-visual">
-                                <svg class="spine-svg" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M50,15 C65,35 68,55 58,80 C50,100 45,120 50,135" stroke="rgba(255,77,77,0.3)" stroke-width="3" stroke-linecap="round"/>
-                                    <rect x="46" y="15" width="8" height="4" rx="2" fill="#ff4d4d"/>
-                                    <rect x="48" y="23" width="9" height="4.5" rx="2" fill="#ff4d4d"/>
-                                    <rect x="51" y="31" width="10" height="5" rx="2" fill="#ff4d4d"/>
-                                    <rect x="54" y="40" width="12" height="5.5" rx="2" fill="#ff4d4d" transform="rotate(5 60 42)"/>
-                                    <rect x="56" y="50" width="13" height="6" rx="2" fill="#ff4d4d" transform="rotate(10 62 53)"/>
-                                    <rect x="56" y="61" width="14" height="6" rx="2" fill="#ff4d4d" transform="rotate(12 63 64)"/>
-                                    <rect x="54" y="72" width="15" height="6.5" rx="2" fill="#ff4d4d" transform="rotate(8 61 75)"/>
-                                    <rect x="51" y="83" width="16" height="7" rx="2" fill="#ff4d4d" transform="rotate(3 59 86)"/>
-                                    <rect x="47" y="95" width="17" height="7.5" rx="2.5" fill="#ff4d4d" transform="rotate(-2 55 98)"/>
-                                    <rect x="45" y="107" width="18" height="8" rx="2.5" fill="#ff4d4d" transform="rotate(-5 54 111)"/>
-                                    <rect x="44" y="119" width="19" height="8.5" rx="2.5" fill="#ff4d4d" transform="rotate(-5 53 123)"/>
-                                    <path d="M45,131 L55,131 L52,143 L48,143 Z" fill="#ff4d4d"/>
+                                <svg class="spine-svg" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: pulse-danger 2s infinite;">
+                                    <path d="M48 10 Q 60 40, 45 80 T 55 140" stroke="rgba(255,77,77,0.2)" stroke-width="12" stroke-linecap="round" />
+                                    <path d="M 42 15 Q 48 15 54 15 
+                                             M 44 25 Q 50 25 56 25
+                                             M 45 35 Q 51 35 57 35
+                                             M 46 45 Q 52 45 58 45
+                                             M 45 55 Q 51 55 57 55
+                                             M 43 65 Q 49 65 55 65
+                                             M 41 75 Q 47 75 53 75
+                                             M 39 85 Q 45 85 51 85
+                                             M 39 95 Q 45 95 51 95
+                                             M 41 105 Q 47 105 53 105
+                                             M 44 115 Q 50 115 56 115
+                                             M 48 125 Q 54 125 60 125
+                                             M 51 135 Q 57 135 63 135" stroke="#ff4d4d" stroke-width="5" stroke-linecap="round"/>
+                                    <path d="M 48 20 Q 52 20 54 20 M 49 30 Q 53 30 55 30 M 50 40 Q 54 40 56 40 M 50 50 Q 54 50 56 50 M 49 60 Q 53 60 55 60 M 47 70 Q 51 70 53 70 M 45 80 Q 49 80 51 80 M 43 90 Q 47 90 49 90 M 43 100 Q 47 100 49 100 M 45 110 Q 49 110 51 110 M 48 120 Q 52 120 54 120 M 51 130 Q 55 130 57 130" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
                                 </svg>
                                 <div class="warning-flashes">
                                     <svg class="warn-icon icon-1" viewBox="0 0 24 24" fill="none" stroke="#ff4d4d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2086,7 +2095,7 @@
             <ul class="usp-list anim">
                 <li>
                     <span class="usp-icon">🎯</span>
-                    <span><strong>เซ็นเซอร์ตรวจจับ 25° —</strong> แม่นยำระดับแพทย์ จับทุกองศาที่คุณห่อตัว แล้วสั่นเตือนทันที</span>
+                    <span><strong>เซ็นเซอร์ตรวจจับ 25° —</strong> ตรวจจับแม่นยำ จับทุกองศาที่คุณห่อตัว แล้วสั่นเตือนทันที</span>
                 </li>
                 <li>
                     <span class="usp-icon">📳</span>
@@ -2098,7 +2107,7 @@
                 </li>
                 <li>
                     <span class="usp-icon">🔋</span>
-                    <span><strong>USB-C ชาร์จเร็ว —</strong> ชาร์จ 1 ชม. ใช้ได้นาน 15 วัน ไม่ต้องถอดชาร์จบ่อย</span>
+                    <span><strong>Micro USB ชาร์จเร็ว —</strong> ชาร์จ 1 ชม. ใช้ได้นาน 15 วัน ไม่ต้องถอดชาร์จบ่อย</span>
                 </li>
                 <li>
                     <span class="usp-icon">🪶</span>
@@ -2180,11 +2189,11 @@
                 <div class="feature-card anim anim-delay-2">
                     <span class="feature-icon">🩹</span>
                     <h3>Medical Silicone</h3>
-                    <p>ซิลิโคนเกรดการแพทย์ นุ่ม ไม่ระคายผิว แพ้ง่ายก็ใส่ได้ ใส่สบายทั้งวัน</p>
+                    <p>ซิลิโคนพรีเมียม นุ่ม ไม่ระคายผิว แพ้ง่ายก็ใส่ได้ ใส่สบายทั้งวัน</p>
                 </div>
                 <div class="feature-card anim anim-delay-3">
                     <span class="feature-icon">🔋</span>
-                    <h3>USB-C 15 วัน</h3>
+                    <h3>Micro USB 15 วัน</h3>
                     <p>แบตอึดสุดๆ ชาร์จ 1 ชม. ใช้งานต่อเนื่อง 15 วัน ไม่ต้องห่วงเรื่องแบตหมด</p>
                 </div>
                 <div class="feature-card anim anim-delay-4">
@@ -2229,12 +2238,12 @@
                 </div>
                 <div class="timeline-item">
                     <div class="tl-day">วันที่ 14 — 17</div>
-                    <h3>✨ เปลี่ยนแปลงที่เห็นได้ชัด</h3>
+                    <h3>✨ การเปลี่ยนแปลงที่เห็นได้ชัด</h3>
                     <p>หลังตรงขึ้นอย่างเห็นได้ชัด คนรอบข้างสังเกตเห็น บุคลิกดีขึ้น มั่นใจขึ้น</p>
                 </div>
                 <div class="timeline-item">
                     <div class="tl-day">วันที่ 21+</div>
-                    <h3>🏆 กลายเป็นนิสัย — ไม่ต้องใส่อีก!</h3>
+                    <h3>🏆 กลายเป็นนิสัย — สวมใส่สบาย</h3>
                     <p>สมองจดจำท่าทางที่ถูกต้องจนเป็นอัตโนมัติ หลังตรง ไหล่เปิด ไม่ต้องพึ่งเครื่องอีก</p>
                 </div>
             </div>
@@ -2253,7 +2262,7 @@
             <div class="anim text-center">
                 <span class="section-label">⭐ รีวิวจริงจากลูกค้า</span>
                 <h2 class="section-title">
-                    กว่า <span class="text-gold">2,847 คน</span> ไว้ใจ VERTIC
+                    ลูกค้ามากมายให้ความไว้วางใจ VERTIC
                 </h2>
                 <p class="section-subtitle">
                     ไม่ต้องเชื่อคำเรา — ฟังจากคนที่ใช้จริง
@@ -2438,7 +2447,7 @@
                         </div>
                         <div class="guarantee-badge">
                             <span class="g-icon">✅</span>
-                            <span>รับประกัน 30 วัน</span>
+                            <span>เคลมได้เมื่อมีคลิปแกะกล่อง</span>
                         </div>
                     </div>
                 </form>
@@ -2463,7 +2472,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        <strong>ง่ายมากครับ/ค่ะ!</strong> แค่สวมคล้องคอแล้วกดปุ่มเดียว ไม่ต้องเชื่อมมือถือ ไม่ต้องตั้งค่า ไม่ต้องดาวน์โหลดแอป ลูกค้าอายุ 70+ ปี ก็ใช้เป็นทันที เรามีคู่มือภาษาไทยแถมให้ในกล่องด้วยครับ
+                        <strong>ง่ายมากครับ/ค่ะ!</strong> แค่สวมคล้องคอแล้วกดปุ่มเดียว ไม่ต้องเชื่อมมือถือ ไม่ต้องตั้งค่า ไม่ต้องดาวน์โหลดแอป ลูกค้าอายุ 70+ ปี ก็ใช้เป็นทันที
                     </div>
                 </div>
             </div>
@@ -2475,7 +2484,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        ไม่เจ็บเลยครับ วัสดุเป็น<strong>ซิลิโคนเกรดการแพทย์</strong> นุ่ม เบา ไม่ระคายเคืองผิว แม้แต่คนผิวแพ้ง่ายก็ใส่ได้ น้ำหนักเบาเพียง 30 กรัม ใส่ได้ทั้งวันโดยไม่รู้สึกอะไร
+                        ไม่เจ็บเลยครับ วัสดุเป็น<strong>ซิลิโคนพรีเมียม</strong> นุ่ม เบา ไม่ระคายเคืองผิว แม้แต่คนผิวแพ้ง่ายก็ใส่ได้ น้ำหนักเบาเพียง 30 กรัม ใส่ได้ทั้งวันโดยไม่รู้สึกอะไร
                     </div>
                 </div>
             </div>
@@ -2487,7 +2496,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        <strong>ไม่ต้องครับ!</strong> VERTIC ออกแบบมาเพื่อ "ฝึก" ไม่ใช่ "บังคับ" เหมือนครูฝึก — สอนจนคุณทำเองได้ ใช้วันละ 2-4 ชม. ต่อเนื่อง 21 วัน สมองจะจดจำท่าทางที่ถูกต้อง จนกลายเป็นนิสัยอัตโนมัติ หลังจากนั้นไม่ต้องใส่อีกครับ
+                        <strong>ไม่ต้องครับ!</strong> VERTIC ออกแบบมาเพื่อ "ฝึก" ไม่ใช่ "บังคับ" เหมือนครูฝึก — สอนจนคุณทำเองได้ ใช้วันละ 2-4 ชม. ต่อเนื่อง 21 วัน สมองจะจดจำท่าทางที่ถูกต้อง จนกลายเป็นนิสัยอัตโนมัติ ใส่อีกก็ได้ หรือจะใส่เพื่อให้ชินกับการทำหลังตรง
                     </div>
                 </div>
             </div>
@@ -2499,7 +2508,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        <strong>ส่งฟรีจริง ไม่ต้องโอนเงินก่อนครับ!</strong> เราส่งแบบเก็บเงินปลายทาง (COD) คุณจ่ายตอนได้รับสินค้าเท่านั้น ปลอดภัย 100% แพ็คคู่ส่งฟรีทั่วไทย แพ็คเดี่ยวมีค่าส่ง 50 บาท (รวมในราคาแล้ว)
+                        <strong>ส่งฟรีจริง ไม่ต้องโอนเงินก่อนครับ!</strong> เราส่งแบบเก็บเงินปลายทาง (COD) คุณจ่ายตอนได้รับสินค้าเท่านั้น ปลอดภัย 100% เราจัดส่งฟรีทั่วไทย
                     </div>
                 </div>
             </div>
@@ -2511,19 +2520,19 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        ชาร์จด้วย <strong>สาย USB-C</strong> (สายชาร์จมือถือทั่วไป) ชาร์จเต็มภายใน 1 ชั่วโมง ใช้งานต่อเนื่องได้นาน <strong>15 วัน</strong> โดยไม่ต้องชาร์จซ้ำ ประหยัดเวลาสุดๆ
+                        ชาร์จด้วย <strong>สาย Micro USB</strong> (มีแถมสายให้ในกล่อง) ชาร์จเต็มภายใน 1 ชั่วโมง ใช้งานต่อเนื่องได้นาน <strong>15 วัน</strong> โดยไม่ต้องชาร์จซ้ำ ประหยัดเวลาสุดๆ
                     </div>
                 </div>
             </div>
 
             <div class="faq-item anim">
                 <button class="faq-question" onclick="toggleFaq(this)">
-                    <span>ส่งกี่วันถึง? มีรับประกันไหม?</span>
+                    <span>ส่งกี่วันถึง? กรณีสินค้ามีปัญหาทำอย่างไร?</span>
                     <span class="faq-arrow">▼</span>
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        จัดส่งภายใน <strong>1-2 วันทำการ</strong> ได้รับสินค้าภายใน 3-5 วัน (กรุงเทพฯ อาจถึงเร็วกว่า) มี<strong>รับประกัน 30 วัน</strong> หากสินค้าชำรุดเปลี่ยนให้ใหม่ทันที และ<strong>เปลี่ยนคืนได้ภายใน 7 วัน</strong>
+                        จัดส่งภายใน <strong>1-2 วันทำการ</strong> ได้รับสินค้าภายใน 3-5 วัน (กรุงเทพฯ อาจถึงเร็วกว่า) กรณีแจ้งเคลมให้อัดวิดีโอการแกะพัสดุแนบมาด้วย
                     </div>
                 </div>
             </div>
@@ -2535,7 +2544,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        สายรัดหลังแค่ "บังคับ" ให้ตรง ถอดออกก็กลับมาค่อมเหมือนเดิม แถมใส่นานๆ กล้ามเนื้อจะอ่อนแอลง VERTIC ไม่ใช่สายรัด แต่เป็น <strong>"ครูฝึก"</strong> ที่สอนให้ร่างกายจดจำท่าทางที่ถูกต้อง ใช้เซ็นเซอร์ + การสั่นเตือน ฝึกจนเป็นนิสัยถาวร ไม่ต้องพึ่งอุปกรณ์ตลอดชีวิต
+                        ของเราดีกว่าสายรัดทั่วไปที่อึดอัด ตัวนี้สวมใส่สบาย ช่วยให้ชินกับการทำหลังตรง จนกว่าผู้ใช้จะชินกับการทำหลังตรงแล้ว
                     </div>
                 </div>
             </div>
@@ -2549,9 +2558,9 @@
         <div class="container">
             <div class="anim">
                 <p class="text-accent" style="font-size:16px; font-weight:700; margin-bottom:8px;">⏰ โปรโมชั่นจำนวนจำกัด</p>
-                <h2>อย่ารอจนปวดจนผ่าตัด<br>เริ่มแก้ไขวันนี้ เพียง <span class="text-gold">฿990</span></h2>
+                <h2>อย่ารอจนสายเกินไป<br>เริ่มแก้ไขวันนี้ เพียง <span class="text-gold">฿990</span></h2>
                 <p>ลงทุนกับสุขภาพตัวเอง — หรือซื้อเป็นของขวัญให้คนที่คุณรัก<br>
-                ส่งฟรี · เก็บเงินปลายทาง · รับประกัน 30 วัน</p>
+                ส่งฟรี · เก็บเงินปลายทาง · เคลมได้เมื่อมีคลิปแกะกล่อง</p>
                 <a href="#order" class="btn-primary btn-gold pulse" style="display:inline-flex; font-size:20px; padding:18px 40px;">
                     <span>🛒</span>
                     <span>สั่งซื้อเลย — เก็บเงินปลายทาง</span>
