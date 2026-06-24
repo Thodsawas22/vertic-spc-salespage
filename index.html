@@ -2851,22 +2851,47 @@
                 return;
             }
 
-            const formData = new URLSearchParams();
-            formData.append('customerName', data.name);
-            formData.append('customerPhone', data.phone);
-            formData.append('customerAddress', data.address);
-            formData.append('package', data.packageName);
-            formData.append('totalPrice', data.price);
+            // Create a hidden iframe if not exists
+            let iframe = document.getElementById('webhook_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'webhook_iframe';
+                iframe.id = 'webhook_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
 
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            })
-            .then(function() { showSuccess(data); })
-            .catch(function() {
+            // Create a hidden form
+            const hiddenForm = document.createElement('form');
+            hiddenForm.method = 'POST';
+            hiddenForm.action = WEBHOOK_URL;
+            hiddenForm.target = 'webhook_iframe';
+            hiddenForm.style.display = 'none';
+
+            const params = {
+                customerName: data.name,
+                customerPhone: data.phone,
+                customerAddress: data.address,
+                package: data.packageName,
+                totalPrice: data.price
+            };
+
+            for (const key in params) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = params[key];
+                hiddenForm.appendChild(input);
+            }
+
+            document.body.appendChild(hiddenForm);
+            hiddenForm.submit();
+
+            // Clean up and show success
+            setTimeout(function() {
+                document.body.removeChild(hiddenForm);
                 showSuccess(data);
-            });
+            }, 500);
         }
 
         function showSuccess(data) {
