@@ -1320,6 +1320,10 @@
         .form-group label .required {
             color: var(--danger);
         }
+        .form-input option {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+        }
         .form-input {
             width: 100%;
             background: var(--bg-secondary);
@@ -2613,6 +2617,89 @@
     (function() {
         'use strict';
 
+        // ─── THAILAND ADDRESS LOGIC ───────────────────────────────────
+        let thaiData = [];
+        fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api/latest/province_with_district_and_sub_district.json')
+            .then(res => res.json())
+            .then(data => {
+                thaiData = data;
+                const pSelect = document.getElementById('provinceSelect');
+                data.forEach(p => {
+                    let opt = document.createElement('option');
+                    opt.value = p.id;
+                    opt.text = p.name_th;
+                    pSelect.appendChild(opt);
+                });
+            }).catch(err => console.error('Error loading address data:', err));
+
+        document.getElementById('provinceSelect').addEventListener('change', function() {
+            const pId = parseInt(this.value);
+            const dSelect = document.getElementById('districtSelect');
+            const sSelect = document.getElementById('subdistrictSelect');
+            const zInput = document.getElementById('zipcode');
+            
+            dSelect.innerHTML = '<option value="" disabled selected>เขต/อำเภอ</option>';
+            sSelect.innerHTML = '<option value="" disabled selected>แขวง/ตำบล</option>';
+            zInput.value = '';
+            sSelect.disabled = true;
+            
+            const province = thaiData.find(p => p.id === pId);
+            if (province) {
+                province.districts.forEach(d => {
+                    let opt = document.createElement('option');
+                    opt.value = d.id;
+                    opt.text = d.name_th;
+                    dSelect.appendChild(opt);
+                });
+                dSelect.disabled = false;
+            }
+            validateAddress();
+        });
+
+        document.getElementById('districtSelect').addEventListener('change', function() {
+            const dId = parseInt(this.value);
+            const pId = parseInt(document.getElementById('provinceSelect').value);
+            const sSelect = document.getElementById('subdistrictSelect');
+            const zInput = document.getElementById('zipcode');
+            
+            sSelect.innerHTML = '<option value="" disabled selected>แขวง/ตำบล</option>';
+            zInput.value = '';
+            
+            const province = thaiData.find(p => p.id === pId);
+            const district = province.districts.find(d => d.id === dId);
+            if (district) {
+                district.sub_districts.forEach(s => {
+                    let opt = document.createElement('option');
+                    opt.value = s.id;
+                    opt.text = s.name_th;
+                    opt.dataset.zip = s.zip_code;
+                    sSelect.appendChild(opt);
+                });
+                sSelect.disabled = false;
+            }
+            validateAddress();
+        });
+
+        document.getElementById('subdistrictSelect').addEventListener('change', function() {
+            const opt = this.options[this.selectedIndex];
+            document.getElementById('zipcode').value = opt.dataset.zip || '';
+            validateAddress();
+        });
+
+        document.getElementById('addressDetail').addEventListener('blur', validateAddress);
+
+        function validateAddress() {
+            const detail = document.getElementById('addressDetail').value.trim();
+            const provOk = document.getElementById('provinceSelect').value !== '';
+            const distOk = document.getElementById('districtSelect').value !== '';
+            const subOk = document.getElementById('subdistrictSelect').value !== '';
+            const zipOk = document.getElementById('zipcode').value !== '';
+            
+            const addrOk = detail.length >= 2 && provOk && distOk && subOk && zipOk;
+            document.getElementById('addressError').style.display = addrOk ? 'none' : 'none'; // Only show on submit
+            return addrOk;
+        }
+
         // ─── CONFIG ───────────────────────────────────────────────────
         const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzuCwjfxPod_wlqXhKD0DMVxWBZNOWIrrVDO71I9NkupoT_n7IhM8fEOIpdFS16pl4/exec';
         // Replace the above URL with your actual Google Apps Script webhook URL
@@ -2787,17 +2874,17 @@
             const phoneOk = validateField('customerPhone', 'phoneError', function(v) {
                 return /^[0-9\-]{9,12}$/.test(v) && v.replace(/\D/g, '').length >= 9;
             });
-            const addrOk = validateField('customerAddress', 'addressError', function(v) { return v.length >= 10; });
+            const addrOk = validateAddress();
+            if(!addrOk) document.getElementById('addressError').style.display = 'block';
             return nameOk && phoneOk && addrOk;
         }
 
         // Real-time validation on blur
-        ['customerName', 'customerPhone', 'customerAddress'].forEach(function(id) {
+        ['customerName', 'customerPhone'].forEach(function(id) {
             document.getElementById(id).addEventListener('blur', function() {
                 const map = {
                     customerName: ['nameError', function(v) { return v.length >= 2; }],
-                    customerPhone: ['phoneError', function(v) { return /^[0-9\-]{9,12}$/.test(v) && v.replace(/\D/g, '').length >= 9; }],
-                    customerAddress: ['addressError', function(v) { return v.length >= 10; }]
+                    customerPhone: ['phoneError', function(v) { return /^[0-9\-]{9,12}$/.test(v) && v.replace(/\D/g, '').length >= 9; }]
                 };
                 var m = map[id];
                 validateField(id, m[0], m[1]);
@@ -2835,7 +2922,7 @@
                 price: pkg === 2 ? 1790 : 990,
                 name: document.getElementById('customerName').value.trim(),
                 phone: document.getElementById('customerPhone').value.trim(),
-                address: document.getElementById('customerAddress').value.trim(),
+                address: `${document.getElementById('addressDetail').value.trim()} ต.${document.getElementById('subdistrictSelect').options[document.getElementById('subdistrictSelect').selectedIndex].text} อ.${document.getElementById('districtSelect').options[document.getElementById('districtSelect').selectedIndex].text} จ.${document.getElementById('provinceSelect').options[document.getElementById('provinceSelect').selectedIndex].text} ${document.getElementById('zipcode').value.trim()}`,
                 source: 'salepage',
                 userAgent: navigator.userAgent
             };
