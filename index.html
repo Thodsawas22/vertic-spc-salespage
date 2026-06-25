@@ -21,7 +21,7 @@
         "@type": "Product",
         "name": "VERTIC Smart Posture Corrector เครื่องฝึกสรีระอัจฉริยะ",
         "image": "images/product.jpg",
-        "description": "เครื่องฝึกสรีระอัจฉริยะ เซ็นเซอร์ตรวจจับ 25° สั่นเตือนอัตโนมัติ ซิลิโคนเกรดพรีเมียม ชาร์จ USB-C น้ำหนักเบาเพียง 30 กรัม",
+        "description": "เครื่องฝึกสรีระอัจฉริยะ เซ็นเซอร์ตรวจจับ 25° สั่นเตือนอัตโนมัติ ซิลิโคนเกรดพรีเมียม ชาร์จ Micro USB น้ำหนักเบาเพียง 30 กรัม",
         "brand": { "@type": "Brand", "name": "VERTIC Thailand" },
         "offers": {
             "@type": "Offer",
@@ -1320,7 +1320,7 @@
         }
         .form-input option {
             background-color: var(--bg-card);
-            color: var(--text-main);
+            color: var(--text-primary);
         }
         .form-input {
             width: 100%;
@@ -1629,14 +1629,48 @@
             line-height: 1.6;
             margin-bottom: 8px;
         }
-        .modal .order-id {
+        /* Contact / Messenger Section */
+        .contact-section {
+            background: var(--bg-secondary);
+        }
+        .messenger-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #0084FF, #0066CC);
+            color: var(--white);
+            font-family: var(--font);
             font-size: 18px;
             font-weight: 700;
-            color: var(--accent);
-            margin: 16px 0;
-            padding: 12px;
-            background: rgba(0,180,216,0.1);
-            border-radius: var(--radius-sm);
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0,132,255,0.3);
+        }
+        .messenger-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0,132,255,0.5);
+            color: var(--white);
+        }
+        .messenger-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        /* Honeypot - hidden from humans */
+        .hp-field {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            opacity: 0;
+            height: 0;
+            width: 0;
+            z-index: -1;
+            pointer-events: none;
         }
         .modal .close-modal-btn {
             background: var(--gradient-accent);
@@ -1813,12 +1847,19 @@
 </head>
 <body>
 
+    <!-- No JavaScript Fallback -->
+    <noscript>
+        <div style="background:#c0392b;color:#fff;text-align:center;padding:16px;font-size:16px;font-family:sans-serif;">
+            กรุณาเปิดใช้งาน JavaScript ในเบราว์เซอร์ของคุณ เพื่อใช้งานเว็บไซต์นี้ได้อย่างสมบูรณ์
+        </div>
+    </noscript>
+
     <!-- ═══════════════════════════════════════════════════════════════
          STICKY HEADER
          ═══════════════════════════════════════════════════════════════ -->
     <header class="sticky-header" id="stickyHeader">
         <div class="container">
-            <img src="images/vertic_logo.png" alt="VERTIC" class="logo-img" onerror="this.outerHTML='<span style=&quot;font-size:22px;font-weight:900;color:#00b4d8&quot;>VERTIC</span>'">
+            <img src="images/vertic_logo.png" alt="VERTIC" class="logo-img" id="stickyLogo">
             <button class="cta-btn-sm" onclick="scrollToOrder()">🛒 สั่งซื้อเลย</button>
         </div>
     </header>
@@ -1983,7 +2024,7 @@
                 </div>
                 
                 <div class="cost-caption-bar">
-                    ลงทุนหลักร้อย ดีกว่าจ่ายหลักหมื่น
+                    ลงทุนหลักร้อย ดีกว่าจ่ายหลักแสน
                 </div>
                 <table class="cost-table">
                     <thead>
@@ -2358,6 +2399,12 @@
                         <div class="error-msg" id="nameError">❌ กรุณากรอกชื่อ-นามสกุล</div>
                     </div>
 
+                    <!-- Honeypot field - hidden from real users, bots will fill this -->
+                    <div class="hp-field" aria-hidden="true">
+                        <label for="website_url">Website</label>
+                        <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <div class="form-group">
                         <label for="customerPhone">📱 เบอร์โทรศัพท์ <span class="required">*</span></label>
                         <input type="tel" id="customerPhone" class="form-input" placeholder="เช่น 089-123-4567" required autocomplete="tel" maxlength="12" inputmode="tel">
@@ -2519,9 +2566,28 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        ของเราดีกว่าสายรัดทั่วไปที่อึดอัด ตัวนี้สวมใส่สบาย ช่วยให้ชินกับการทำหลังตรง จนกว่าผู้ใช้จะชินกับการทำหลังตรงแล้ว
+                        ของเราต่างจากสายรัดหลังทั่วไปที่บังคับร่างกายให้ตรง ใส่แล้วอึดอัด ถอดออกก็กลับมาค่อมเหมือนเดิม VERTIC ใช้หลักการ <strong>"สั่นเตือน"</strong> เพื่อฝึกให้สมองจดจำท่าทางที่ถูกต้อง ใส่สบาย น้ำหนักเบาแค่ 30 กรัม จนกลายเป็นนิสัยจริงๆ ไม่ต้องพึ่งอุปกรณ์ตลอดไป
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION: CONTACT US (MESSENGER)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="anim text-center">
+                <span class="section-label">💬 ติดต่อสอบถาม</span>
+                <h2 class="section-title">มีคำถามเพิ่มเติม?<br><span class="text-accent">แชทกับเราได้เลย!</span></h2>
+                <p class="section-subtitle">ทีมงาน VERTIC พร้อมตอบทุกข้อสงสัย<br>ผ่าน Facebook Messenger</p>
+            </div>
+            <div class="anim" style="text-align:center;">
+                <a href="https://m.me/61590563421127" target="_blank" rel="noopener noreferrer" class="messenger-btn" id="messengerBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256.55 8C116.52 8 8 110.34 8 248.57c0 72.3 29.71 134.78 78.07 177.94 8.35 7.51 6.63 11.86 8.05 58.23A19.92 19.92 0 0 0 122 502.31c52.13-22.79 50.06-21.97 59.1-24.46C193.38 481.58 224.42 488 256.55 488 396.84 488 504 386.18 504 248.57 504 110.34 396.84 8 256.55 8zm149.24 185.13l-73 115.57a37.37 37.37 0 0 1-53.91 9.93l-58.08-43.47a15 15 0 0 0-18 0l-78.37 59.44c-10.46 7.93-24.16-4.6-17.11-15.67l73-115.57a37.36 37.36 0 0 1 53.91-9.93l58.06 43.46a15 15 0 0 0 18 0l78.41-59.38c10.44-7.98 24.14 4.54 17.09 15.62z"/></svg>
+                    <span>แชทกับเราทาง Messenger</span>
+                </a>
             </div>
         </div>
     </section>
@@ -2546,7 +2612,7 @@
 
     <footer class="footer">
         <div class="container">
-            <img src="images/vertic_logo.png" alt="VERTIC Thailand" class="footer-logo" onerror="this.outerHTML='<div style=&quot;font-size:20px;font-weight:900;color:#00b4d8;margin-bottom:16px&quot;>VERTIC</div>'">
+            <img src="images/vertic_logo.png" alt="VERTIC Thailand" class="footer-logo" id="footerLogo">
             <p>VERTIC Thailand — เครื่องฝึกสรีระอัจฉริยะ Smart Posture Corrector</p>
             <p>© 2026 VERTIC Thailand. All rights reserved.</p>
             <div class="footer-links">
@@ -2574,9 +2640,7 @@
             <span class="modal-icon">✅</span>
             <h3>สั่งซื้อสำเร็จแล้ว!</h3>
             <p>ขอบคุณที่ไว้วางใจ VERTIC ❤️</p>
-            <div class="order-id" id="modalOrderId">หมายเลขออเดอร์: #VT-000000</div>
             <p>เราจะจัดส่งสินค้าภายใน <strong>1-2 วันทำการ</strong></p>
-            <p>คุณจะได้รับ SMS ยืนยันที่เบอร์โทรศัพท์ของคุณ</p>
             <p style="font-size:14px; color:var(--text-muted);">💰 ชำระเงินปลายทาง — จ่ายเมื่อได้รับสินค้า</p>
             <button class="close-modal-btn" onclick="closeModal()">ตกลง ✓</button>
         </div>
@@ -2669,7 +2733,7 @@
             const zipOk = document.getElementById('zipcode').value !== '';
             
             const addrOk = detail.length >= 2 && provOk && distOk && subOk && zipOk;
-            document.getElementById('addressError').style.display = addrOk ? 'none' : 'none'; // Only show on submit
+            document.getElementById('addressError').style.display = 'none'; // Only show on submit
             return addrOk;
         }
 
@@ -2845,7 +2909,7 @@
         function validateForm() {
             const nameOk = validateField('customerName', 'nameError', function(v) { return v.length >= 2; });
             const phoneOk = validateField('customerPhone', 'phoneError', function(v) {
-                return /^[0-9\-]{9,12}$/.test(v) && v.replace(/\D/g, '').length >= 9;
+                return /^[0-9\-]{10,12}$/.test(v) && v.replace(/\D/g, '').length >= 10;
             });
             const addrOk = validateAddress();
             if(!addrOk) document.getElementById('addressError').style.display = 'block';
@@ -2857,7 +2921,7 @@
             document.getElementById(id).addEventListener('blur', function() {
                 const map = {
                     customerName: ['nameError', function(v) { return v.length >= 2; }],
-                    customerPhone: ['phoneError', function(v) { return /^[0-9\-]{9,12}$/.test(v) && v.replace(/\D/g, '').length >= 9; }]
+                    customerPhone: ['phoneError', function(v) { return /^[0-9\-]{10,12}$/.test(v) && v.replace(/\D/g, '').length >= 10; }]
                 };
                 var m = map[id];
                 validateField(id, m[0], m[1]);
@@ -2870,8 +2934,29 @@
             e.target.value = val;
         });
 
+        let lastSubmitTime = 0;
+        let submitCount = 0;
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Honeypot check for bots
+            const hpValue = document.getElementById('website_url').value;
+            if (hpValue) {
+                console.warn('Spam detected');
+                return;
+            }
+
+            // Rate limiting
+            const now = Date.now();
+            if (now - lastSubmitTime < 30000) {
+                alert('กรุณารอสักครู่ก่อนส่งข้อมูลซ้ำ');
+                return;
+            }
+            if (submitCount >= 5) {
+                alert('คุณทำรายการเกินจำนวนที่กำหนด กรุณาลองใหม่ในภายหลัง');
+                return;
+            }
 
             if (!validateForm()) {
                 const firstError = form.querySelector('.form-input.error');
@@ -2886,37 +2971,42 @@
             submitBtn.disabled = true;
             submitBtnText.innerHTML = '<span class="spinner"></span> กำลังส่งคำสั่งซื้อ...';
 
+            lastSubmitTime = now;
+            submitCount++;
+
+            // Input Sanitization to prevent Sheets formula injection
+            const sanitize = str => str.replace(/^[=\+\-@]/, "'").replace(/[<>]/g, "");
+
             const pkg = document.getElementById('pkg2').checked ? 2 : 1;
+            
+            // Build address string safely
+            const subOpt = document.getElementById('subdistrictSelect').options[document.getElementById('subdistrictSelect').selectedIndex];
+            const distOpt = document.getElementById('districtSelect').options[document.getElementById('districtSelect').selectedIndex];
+            const provOpt = document.getElementById('provinceSelect').options[document.getElementById('provinceSelect').selectedIndex];
+            
+            const addrParts = [
+                sanitize(document.getElementById('addressDetail').value.trim()),
+                subOpt && subOpt.value ? `ต.${subOpt.text}` : '',
+                distOpt && distOpt.value ? `อ.${distOpt.text}` : '',
+                provOpt && provOpt.value ? `จ.${provOpt.text}` : '',
+                sanitize(document.getElementById('zipcode').value.trim())
+            ].filter(Boolean).join(' ');
+
             const orderData = {
-                orderId: 'VT-' + Date.now().toString(36).toUpperCase(),
                 timestamp: new Date().toISOString(),
                 package: pkg,
                 packageName: pkg === 2 ? 'แพ็คคู่ 2 ชิ้น' : '1 ชิ้น',
                 price: pkg === 2 ? 1790 : 990,
-                name: document.getElementById('customerName').value.trim(),
-                phone: document.getElementById('customerPhone').value.trim(),
-                address: `${document.getElementById('addressDetail').value.trim()} ต.${document.getElementById('subdistrictSelect').options[document.getElementById('subdistrictSelect').selectedIndex].text} อ.${document.getElementById('districtSelect').options[document.getElementById('districtSelect').selectedIndex].text} จ.${document.getElementById('provinceSelect').options[document.getElementById('provinceSelect').selectedIndex].text} ${document.getElementById('zipcode').value.trim()}`,
-                source: 'salepage',
-                userAgent: navigator.userAgent
+                name: sanitize(document.getElementById('customerName').value.trim()),
+                phone: sanitize(document.getElementById('customerPhone').value.trim()),
+                address: addrParts
             };
-
-            // Save to localStorage
-            try {
-                var orders = JSON.parse(localStorage.getItem('vertic_orders') || '[]');
-                orders.push(orderData);
-                localStorage.setItem('vertic_orders', JSON.stringify(orders));
-            } catch(err) { /* fail silently */ }
 
             // Send to webhook (Google Apps Script)
             sendToWebhook(orderData);
         });
 
         function sendToWebhook(data) {
-            if (WEBHOOK_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_ID')) {
-                // Placeholder URL — skip webhook, just show success
-                setTimeout(function() { showSuccess(data); }, 800);
-                return;
-            }
 
             // Create a hidden iframe if not exists
             let iframe = document.getElementById('webhook_iframe');
@@ -2962,7 +3052,6 @@
         }
 
         function showSuccess(data) {
-            document.getElementById('modalOrderId').textContent = 'หมายเลขออเดอร์: #' + data.orderId;
             document.getElementById('successModal').classList.add('show');
             document.body.style.overflow = 'hidden';
 
@@ -2970,6 +3059,13 @@
             submitBtn.disabled = false;
             submitBtnText.innerHTML = 'ยืนยันสั่งซื้อ — เก็บเงินปลายทาง';
             form.reset();
+            
+            // Reset cascading dropdowns
+            document.getElementById('districtSelect').innerHTML = '<option value="" disabled selected>เขต/อำเภอ</option>';
+            document.getElementById('districtSelect').disabled = true;
+            document.getElementById('subdistrictSelect').innerHTML = '<option value="" disabled selected>แขวง/ตำบล</option>';
+            document.getElementById('subdistrictSelect').disabled = true;
+
             selectPackage(1);
 
             // Track conversion (if FB pixel or GA is present)
