@@ -70,8 +70,8 @@
         :root {
             --bg-primary: #0a1628;
             --bg-secondary: #0f1f3a;
-            --bg-card: #132240;
-            --bg-card-hover: #1a2d55;
+            --bg-card: rgba(19, 34, 64, 0.75);
+            --bg-card-hover: rgba(26, 45, 85, 0.85);
             --accent: #00b4d8;
             --accent-glow: rgba(0, 180, 216, 0.3);
             --accent-dark: #0090ad;
@@ -186,6 +186,9 @@
 
         .highlight-box {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0,180,216,0.2);
             border-radius: var(--radius-md);
             padding: 24px;
@@ -247,9 +250,9 @@
         }
 
         @keyframes pulseGold {
-            0% { box-shadow: 0 0 0 0 rgba(240,180,41,0.5); }
-            70% { box-shadow: 0 0 0 16px rgba(240,180,41,0); }
-            100% { box-shadow: 0 0 0 0 rgba(240,180,41,0); }
+            0% { box-shadow: 0 0 10px rgba(240,180,41,0.6), 0 0 0 0 rgba(240,180,41,0.5); }
+            70% { box-shadow: 0 0 25px rgba(240,180,41,0.9), 0 0 0 20px rgba(240,180,41,0); }
+            100% { box-shadow: 0 0 10px rgba(240,180,41,0.6), 0 0 0 0 rgba(240,180,41,0); }
         }
 
         @keyframes shimmer {
@@ -561,6 +564,9 @@
         }
         .pain-card {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255,107,107,0.15);
             border-radius: var(--radius-md);
             padding: 24px;
@@ -599,6 +605,9 @@
         }
         .stat-card {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0,180,216,0.15);
             border-radius: var(--radius-md);
             padding: 20px 12px;
@@ -631,6 +640,9 @@
             border-radius: var(--radius-md);
             overflow: hidden;
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
         .cost-table {
@@ -643,6 +655,9 @@
         }
         .cost-table th {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 16px;
             font-size: 15px;
             font-weight: 700;
@@ -1004,6 +1019,9 @@
         }
         .feature-card {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0,180,216,0.1);
             border-radius: var(--radius-md);
             padding: 24px 16px;
@@ -1117,6 +1135,9 @@
         }
         .review-card {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0,180,216,0.1);
             border-radius: var(--radius-md);
             padding: 24px;
@@ -1171,6 +1192,9 @@
         }
         .review-stat {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-md);
             padding: 20px;
             text-align: center;
@@ -1213,6 +1237,9 @@
 
         .order-box {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(0,180,216,0.25);
             border-radius: var(--radius-lg);
             padding: 32px 24px;
@@ -1337,7 +1364,10 @@
             color: var(--danger);
         }
         .form-input option {
-            background-color: var(--bg-card);
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-primary);
         }
         .form-input {
@@ -1492,6 +1522,9 @@
         }
         .faq-item {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: var(--radius-md);
             margin-bottom: 12px;
@@ -1612,6 +1645,9 @@
         }
         .modal {
             background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0,180,216,0.3);
             border-radius: var(--radius-lg);
             padding: 40px 28px;
@@ -2037,7 +2073,7 @@
                         </div>
                     </div>
                     <div style="width: 100%; display: flex; justify-content: center; position: relative;">
-                        <img src="images/infographic_post1_crop.png" alt="VERTIC vs การผ่าตัดกระดูกสันหลัง" style="width: 100%; max-width: 600px; height: auto; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <img src="images/infographic_post1_crop.png" alt="VERTIC vs การผ่าตัดกระดูกสันหลัง" loading="lazy" style="width: 100%; max-width: 600px; height: auto; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                     </div>
                 </div>
                 
@@ -3016,7 +3052,7 @@
                 packageName: pkg === 2 ? 'แพ็คคู่ 2 ชิ้น' : '1 ชิ้น',
                 price: pkg === 2 ? 1790 : 990,
                 name: sanitize(document.getElementById('customerName').value.trim()),
-                phone: sanitize(document.getElementById('customerPhone').value.trim()),
+                phone: "'" + sanitize(document.getElementById('customerPhone').value.trim()),
                 address: addrParts
             };
 
