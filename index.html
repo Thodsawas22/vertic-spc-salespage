@@ -138,6 +138,7 @@
         .section {
             padding: 60px 0;
             position: relative;
+            scroll-margin-top: 80px;
         }
 
         .section-label {
@@ -3159,9 +3160,22 @@
             }
         };
 
-        // ─── SCROLL TO ORDER ────────────────────────────────────────
         window.scrollToOrder = function() {
-            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+            const target = document.getElementById('order');
+            if (!target) return;
+            
+            target.scrollIntoView({ behavior: 'smooth' });
+            
+            // Auto-adjust scroll if lazy-loaded images push the content down
+            let attempts = 0;
+            const scrollInterval = setInterval(function() {
+                const rect = target.getBoundingClientRect();
+                if (Math.abs(rect.top - 80) > 10) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                attempts++;
+                if (attempts >= 10) clearInterval(scrollInterval);
+            }, 150);
         };
 
         // ─── ESCAPE KEY CLOSES MODAL ────────────────────────────────
