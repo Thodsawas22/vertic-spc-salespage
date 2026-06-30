@@ -2793,7 +2793,7 @@
         }
 
         // ─── CONFIG ───────────────────────────────────────────────────
-        const WEBHOOK_URL = '/api/submit';
+        const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyPxUZ8GEqfdcnZTpZPuOIrcA18fW7kavfK2qsTGoBr7b5Arlj1oAaBEoJ-h08xzVQ/exec';
         // Replace the above URL with your actual Google Apps Script webhook URL
 
         // ─── COUNTDOWN TIMER ──────────────────────────────────────────
@@ -3061,7 +3061,25 @@
             sendToWebhook(orderData);
         });
 
-        async function sendToWebhook(data) {
+        function sendToWebhook(data) {
+
+            // Create a hidden iframe if not exists
+            let iframe = document.getElementById('webhook_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'webhook_iframe';
+                iframe.id = 'webhook_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+
+            // Create a hidden form
+            const hiddenForm = document.createElement('form');
+            hiddenForm.method = 'POST';
+            hiddenForm.action = WEBHOOK_URL;
+            hiddenForm.target = 'webhook_iframe';
+            hiddenForm.style.display = 'none';
+
             const params = {
                 customerName: data.name,
                 customerPhone: data.phone,
@@ -3070,34 +3088,22 @@
                 totalPrice: data.price
             };
 
-            // แสดงสถานะว่ากำลังโหลด (ถ้าต้องการ)
-            submitBtn.disabled = true;
-            submitBtnText.innerHTML = 'กำลังประมวลผล...';
-
-            try {
-                const response = await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(params)
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok) {
-                    showSuccess(data);
-                } else {
-                    alert("Error: " + (result.error || "ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง"));
-                    submitBtn.disabled = false;
-                    submitBtnText.innerHTML = 'ยืนยันสั่งซื้อ — เก็บเงินปลายทาง';
-                }
-            } catch (error) {
-                alert("เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาตรวจสอบอินเทอร์เน็ตและลองใหม่อีกครั้ง");
-                console.error("Fetch error:", error);
-                submitBtn.disabled = false;
-                submitBtnText.innerHTML = 'ยืนยันสั่งซื้อ — เก็บเงินปลายทาง';
+            for (const key in params) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = params[key];
+                hiddenForm.appendChild(input);
             }
+
+            document.body.appendChild(hiddenForm);
+            hiddenForm.submit();
+
+            // Clean up and show success
+            setTimeout(function() {
+                document.body.removeChild(hiddenForm);
+                showSuccess(data);
+            }, 500);
         }
 
         function showSuccess(data) {
