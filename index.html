@@ -2592,11 +2592,14 @@
 
         // ─── THAILAND ADDRESS LOGIC ───────────────────────────────────
         let thaiData = [];
-        fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api/latest/province_with_district_and_sub_district.json')
+        const pSelect = document.getElementById('provinceSelect');
+        pSelect.options[0].text = 'กำลังโหลด...'; // Loading indicator
+        
+        fetch('data/address.json')
             .then(res => res.json())
             .then(data => {
                 thaiData = data;
-                const pSelect = document.getElementById('provinceSelect');
+                pSelect.options[0].text = 'จังหวัด';
                 data.forEach(p => {
                     let opt = document.createElement('option');
                     opt.value = p.id;
